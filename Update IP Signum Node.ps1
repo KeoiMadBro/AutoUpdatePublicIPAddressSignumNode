@@ -40,7 +40,7 @@ Else {
         $content | ForEach-Object { $_ -replace $line, "P2P.myAddress = $CurrentIP" } | Set-Content -Path $nodeConfigFile
         Stop-Process -Name javaw -Force
         Start-Sleep -Milliseconds 2000
-        Start-Process -FilePath "C:\File\Signum Node\signum-node.exe"
+        Start-Process -FilePath "<<Here put the path of the folder where the Signum Node is located>>\signum-node.exe"
         # This line is for BGInfo in case you want it to stay updated when the public IP changes.
         # Start-Process -FilePath "<<Path of BGInfo installation.>>\Bginfo64.exe" "<<Path of the BGInfo config file.>>\LegoLab.bgi /timer:0"
         $DateTimeUpdate = Get-Date -Format "dddd dd MMMM yyyy HH:mm:ss"
