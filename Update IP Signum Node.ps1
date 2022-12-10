@@ -25,7 +25,7 @@ If ($null -eq $CurrentIP) {
     "$DateTimeUpdate -> Unable to retrieve public IP." | Out-File -FilePath $tempfileTXTLog -Force -Append
     Update-Log
 }
-# If the current public IP is retrieved successfully, the old IP is read from the conf file.
+# If the current public IP is retrieved successfully, the old IP is readden from the conf file.
 Else {
     $line = Get-Content $nodeConfigFile | Select-String -Pattern "P2P.myAddress = " | Select-Object -ExpandProperty Line
     $lineToClean = Get-Content $nodeConfigFile | Select-String -Pattern "P2P.myAddress = " | Select-Object -ExpandProperty Line
@@ -35,14 +35,14 @@ Else {
     # If the 2 IP addresses coincide nothing happens.
     If ($line -eq "P2P.myAddress = $CurrentIP") {
     }
-    # If the 2 IPs do not coincide, Signum Node conf file is updated with the new IP, Signum Node is restarted and log file is updated with a new row.
+    # If the 2 IPs do not coincide, Signum Node conf file is updatedwith the new IP, Signum Node is restarted and log file is updated with a new row.
     elseif ($line -ne "P2P.myAddress = $CurrentIP") {
         $content | ForEach-Object { $_ -replace $line, "P2P.myAddress = $CurrentIP" } | Set-Content -Path $nodeConfigFile
         Stop-Process -Name javaw -Force
         Start-Sleep -Milliseconds 2000
-        Start-Process -FilePath "C:\File\Signum Node\signum-node.exe"
+        Start-Process -FilePath "<<Here put the path of the folder where the Signum Node is located>>\signum-node.exe"
         # This line is for BGInfo in case you want it to stay updated when the public IP changes.
-        # Start-Process -FilePath "<<Path of BGInfo installation.>>\Bginfo64.exe" "<<Path of the BGInfo config file.>>\Filename.bgi /timer:0"
+        # Start-Process -FilePath "<<Path of BGInfo installation.>>\Bginfo64.exe" "<<Path of the BGInfo config file.>>\LegoLab.bgi /timer:0"
         $DateTimeUpdate = Get-Date -Format "dddd dd MMMM yyyy HH:mm:ss"
         "$DateTimeUpdate -> Old IP $lineOnlyIP -> Old IP $CurrentIP" | Out-File -FilePath $tempfileTXTLog -Force -Append
         Update-Log
