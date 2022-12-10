@@ -1,5 +1,5 @@
 #Variables
-$CurrentIP = (Invoke-WebRequest -uri "http://ifconfig.me/ip" -UseBasicParsing -TimeoutSec 5).Content
+$CurrentIP = (Invoke-WebRequest -uri "http://ifconfig.me/ip" -UseBasicParsing -TimeoutSec 20).Content
 $fileTXTLog = "<<Here put the log path you want>>\Log IP Signum Node.txt"
 $tempfileTXTLog = "<<Here put the log path you want>>\temp Log IP Signum Node.txt"
 $nodeConfigFile = "<<Here put the path of the folder where the Signum Node is located>>\conf\node.properties"
