@@ -4,7 +4,7 @@ $fileTXTLog = "<<Here put the log path you want>>\Log IP Signum Node.txt"
 $tempfileTXTLog = "<<Here put the log path you want>>\temp Log IP Signum Node.txt"
 $nodeConfigFile = "<<Here put the path of the folder where the Signum Node is located>>\conf\node.properties"
 
-#Function that generates log for the first time and keep it updated, note that the most recent rows will be on top, to improve readability.
+# Function that creates a log file if none is found, otherwise it gets updated, note that the most recent row will be on top, to improve readability.
 Function Update-Log {
     # Puts the new row in top of the old ones.
     $CurrentLog = Get-Content -Path $fileTXTLog -Force
